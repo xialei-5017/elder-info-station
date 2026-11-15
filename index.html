@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-font="f0">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2c5aa0">
+<meta name="description" content="上海市XX社区老年信息服务站：社区公告、老年活动、便民服务、健康科普与紧急联系电话，支持语音朗读与大字体浏览。">
+<title>上海市XX社区老年信息服务站</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 10 L10 45 V90 H40 V60 H60 V90 H90 V45 Z' fill='%232c5aa0'/></svg>">
+<style>
+/* ============================================================
+   字号方案：html 的 font-size 是唯一缩放开关，全站尺寸用 rem，
+   切换字体档位时按钮、间距、圆角会一起等比放大。
+   ============================================================ */
+html {
+  font-size: 19px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+html[data-font="f1"] { font-size: 21px; }
+html[data-font="f2"] { font-size: 23px; }
+html[data-font="f3"] { font-size: 25px; }
+
+:root {
+  /* 颜色 */
+  --blue: #2c5aa0;
+  --blue-2: #4a7bc6;
+  --blue-deep: #1a365d;
+  --orange: #e07820;
+  --orange-2: #f5a35e;
+  --green: #2f855a;
+  --green-deep: #22543d;
+  --pink: #b83280;
+  --red: #c62828;
+  --ink: #23272e;
+  --ink-2: #4d5560;
+  --bg: #f7fafd;
+  --card: #ffffff;
+  --line: #e3edf9;
+  --focus: #f28530;
+
+  /* 字号 */
+  --fs-xs: .79rem;    /* 15px */
+  --fs-sm: .84rem;    /* 16px */
+  --fs-md: .89rem;    /* 17px */
+  --fs-base: 1rem;    /* 19px */
+  --fs-lg: 1.05rem;   /* 20px */
+  --fs-xl: 1.16rem;   /* 22px */
+  --fs-h4: 1.26rem;   /* 24px */
+  --fs-h3: 1.37rem;   /* 26px */
+  --fs-h2: 1.53rem;   /* 29px */
+  --fs-h1: 1.89rem;   /* 36px */
+
+  --r-lg: 1.05rem;
+  --r-md: .74rem;
+  --shadow-sm: 0 2px 10px rgba(27, 54, 93, .06);
+  --shadow-md: 0 6px 20px rgba(27, 54, 93, .1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", sans-serif;
+  font-size: var(--fs-base);
+  line-height: 1.8;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 400px at 85% -50px, rgba(242, 133, 48, .08), transparent 60%),
+    radial-gradient(1000px 420px at -10% 8%, rgba(44, 90, 160, .08), transparent 55%),
+    linear-gradient(180deg, #fff9ec 0%, #f2f8ff 420px, var(--bg) 100%);
+  background-attachment: fixed;
+}
+
+a { color: inherit; }
+button { font: inherit; font-family: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* 键盘用户跳转链接 */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: .8rem 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--blue-deep);
+  border-radius: 0 0 .6rem 0;
+  box-shadow: var(--shadow-md);
+}
+.skip-link:focus { left: 0; }
+
+/* ============ 顶部站牌 ============ */
+header {
+  position: relative;
+  overflow: hidden;
+  padding: 2.2rem 1.05rem 2.1rem;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(120deg, var(--blue-deep) 0%, var(--blue) 52%, var(--orange) 130%);
+}
+header::before,
+header::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+header::before { width: 13.5rem; height: 13.5rem; top: -6.3rem; right: -3.1rem; background: rgba(255,255,255,.07); }
+header::after  { width: 11.5rem; height: 11.5rem; bottom: -6.8rem; left: -2.1rem; background: rgba(255,255,255,.06); }
+
+.header-inner { position: relative; z-index: 1; max-width: 47rem; margin: 0 auto; }
+
+header .badge {
+  display: inline-block;
+  padding: .21rem .95rem;
+  margin-bottom: .74rem;
+  font-size: var(--fs-sm);
+  letter-spacing: .08em;
+  background: rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 999px;
+}
+header h1 {
+  margin-bottom: .42rem;
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: 1.35;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+}
+header p { font-size: var(--fs-lg); opacity: .96; }
+
+/* ============ 无障碍工具栏 ============ */
+.action-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .63rem;
+  align-items: center;
+  justify-content: center;
+  padding: .74rem .84rem;
+  background: rgba(255, 255, 255, .97);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(6px);
+}
+.tool-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .53rem;
+  align-items: center;
+}
+.tool-group + .tool-group {
+  padding-left: .63rem;
+  margin-left: .21rem;
+  border-left: 2px solid #eef3fa;
+}
+.group-label { font-size: var(--fs-xs); color: #75809a; }
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .42rem;
+  min-width: 6.2rem;
+  min-height: 2.84rem;
+  padding: .63rem .95rem;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(27, 54, 93, .12);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+button:hover:not([disabled]) { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(27, 54, 93, .2); }
+button:active:not([disabled]) { transform: translateY(0) scale(.98); }
+button[disabled] { opacity: .45; cursor: not-allowed; box-shadow: none; }
+
+.btn-blue   { background: linear-gradient(135deg, var(--blue), var(--blue-2)); }
+.btn-orange { background: linear-gradient(135deg, var(--orange), var(--orange-2)); }
+.btn-red    { background: linear-gradient(135deg, var(--red), #e85a4f); }
+.btn-gray   { background: linear-gradient(135deg, #6b7280, #8b93a1); }
+.btn-green  { background: linear-gradient(135deg, var(--green), #48b57e); }
+
+.btn-sm { min-width: 4.4rem; min-height: 2.42rem; padding: .42rem .74rem; font-size: var(--fs-md); }
+
+.icon { width: 1.37rem; height: 1.37rem; fill: currentColor; flex: none; }
+.btn-sm .icon { width: 1.05rem; height: 1.05rem; }
+
+/* 字体档位按钮选中态 */
+.font-btn[aria-pressed="true"] {
+  background: linear-gradient(135deg, var(--blue), var(--blue-2));
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--blue);
+}
+
+/* ============ 页面容器 ============ */
+.page { display: none; }
+.page.active { display: block; }
+.page:focus { outline: none; }
+
+.container {
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 1.58rem 1.26rem 2.5rem;
+}
+.back-btn { margin-bottom: 1.16rem; }
+
+.section-title {
+  margin-bottom: 1.26rem;
+  padding-left: .84rem;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--blue);
+  border-left: 7px solid var(--orange);
+}
+
+.page-head { display: flex; align-items: center; gap: .74rem; margin-bottom: 1.37rem; }
+.page-head .icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 3.05rem;
+  height: 3.05rem;
+  border-radius: var(--r-md);
+  color: #fff;
+}
+.page-head .icon-badge .icon { width: 1.68rem; height: 1.68rem; }
+.page-head .section-title { margin-bottom: 0; padding-left: 0; border-left: none; }
+
+/* ============ 提示条 ============ */
+.tip-bar {
+  margin-bottom: 1.37rem;
+  padding: .95rem 1.26rem;
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  color: var(--green-deep);
+  background: #e6f7ee;
+  border-left: 6px solid var(--green);
+  border-radius: var(--r-md);
+}
+.tip-bar.blue { color: #274b7d; background: #e8f0fc; border-left-color: var(--blue); }
+
+.welcome-card {
+  margin-bottom: 2rem;
+  padding: 1.58rem 1.68rem;
+  background: linear-gradient(135deg, #eef5ff, #fff6e8);
+  border: 1px solid #dbe8fb;
+  border-radius: var(--r-lg);
+}
+.welcome-card h2 { margin-bottom: .63rem; font-size: 1.42rem; color: var(--blue); }
+.welcome-card p { font-size: var(--fs-lg); line-height: 1.9; color: #33415c; }
+
+.qr-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.4rem;
+  margin-bottom: 2rem;
+  padding: 1.58rem 1.68rem;
+  background: linear-gradient(135deg, #eef5ff, #fff6e8);
+  border: 1px solid #dbe8fb;
+  border-radius: var(--r-lg);
+}
+.qr-card .qr-text { flex: 1; min-width: 220px; }
+.qr-card h3 { font-size: var(--fs-h3); color: var(--blue); margin-bottom: .63rem; }
+.qr-card p { font-size: var(--fs-lg); line-height: 1.9; color: #33415c; }
+.qr-img img {
+  width: 180px; height: 180px;
+  border-radius: var(--r-md);
+  border: 6px solid #fff;
+  box-shadow: var(--shadow-md);
+}
+@media (max-width: 620px) {
+  .qr-card { flex-direction: column; text-align: center; }
+  .qr-img img { width: 160px; height: 160px; }
+}
+
+/* ============ 栏目卡片 ============ */
+.grid-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.37rem;
+  margin-bottom: 2.3rem;
+}
+@media (min-width: 760px) {
+  .grid-wrap { grid-template-columns: repeat(2, 1fr); }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.58rem;
+  background: var(--card);
+  border-top: 7px solid;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:nth-child(4n+1) { border-color: var(--blue); }
+.card:nth-child(4n+2) { border-color: var(--orange); }
+.card:nth-child(4n+3) { border-color: var(--green); }
+.card:nth-child(4n+4) { border-color: var(--pink); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.card h3 {
+  display: flex;
+  align-items: center;
+  gap: .63rem;
+  margin-bottom: .74rem;
+  font-size: var(--fs-h3);
+}
+.card:nth-child(4n+1) h3 { color: var(--blue); }
+.card:nth-child(4n+2) h3 { color: var(--orange); }
+.card:nth-child(4n+3) h3 { color: var(--green); }
+.card:nth-child(4n+4) h3 { color: var(--pink); }
+
+.card p { flex: 1; margin-bottom: 1.16rem; font-size: var(--fs-base); color: var(--ink-2); }
+.card button { align-self: flex-start; }
+
+/* ============ 详情块 ============ */
+.detail-block {
+  margin-bottom: 1.37rem;
+  padding: 1.58rem 1.79rem;
+  background: var(--card);
+  border-left: 6px solid var(--blue);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+.detail-block h4 { margin: .84rem 0 .53rem; font-size: var(--fs-h4); color: var(--blue); }
+.detail-block h4:first-child { margin-top: 0; }
+.detail-block h5 { margin-bottom: .53rem; font-size: var(--fs-lg); color: #33415c; }
+.detail-block p { margin: .42rem 0; font-size: var(--fs-base); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .63rem; margin-top: .95rem; }
+
+.info-line { display: flex; align-items: flex-start; gap: .53rem; margin: .42rem 0; }
+.info-line .icon { width: 1.16rem; height: 1.16rem; margin-top: .26rem; fill: var(--blue); }
+.info-line strong { color: var(--ink); }
+
+/* ============ 联系电话 ============ */
+.contact-block {
+  margin-bottom: .53rem;
+  padding: 1.68rem;
+  background: linear-gradient(135deg, #fff4e4, #ffe9cf);
+  border: 3px solid var(--orange);
+  border-radius: var(--r-lg);
+}
+.contact-block .section-title { color: #b45309; border-left-color: #b45309; }
+
+.contact-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .63rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.05rem 0;
+  border-bottom: 2px dashed #f0c08a;
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-name { font-size: var(--fs-xl); font-weight: 600; color: #7c4a03; }
+.contact-name small { display: block; font-size: var(--fs-xs); font-weight: 400; color: #a97c3e; }
+
+.tel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .42rem;
+  padding: .74rem 1.26rem;
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  color: var(--red);
+  text-decoration: none;
+  background: #fff;
+  border-radius: var(--r-md);
+  box-shadow: 0 3px 10px rgba(198, 40, 40, .18);
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.tel-link:hover { background: #ffe0e0; transform: scale(1.04); box-shadow: 0 6px 14px rgba(198, 40, 40, .28); }
+.tel-link .icon { width: 1.26rem; height: 1.26rem; fill: var(--red); }
+
+/* ============ 视频 ============ */
+.video-wrap { margin-bottom: 1.26rem; }
+.video-wrap video {
+  display: block;
+  width: 100%;
+  border-radius: .63rem;
+  background: #0d1424;
+}
+.video-fallback {
+  display: none;
+  margin-top: .42rem;
+  padding: .42rem .74rem;
+  font-size: var(--fs-sm);
+  color: #8a4b0f;
+  background: #fff3e2;
+  border-radius: .53rem;
+}
+.video-fallback.show { display: block; }
+
+/* ============ 朗读高亮 ============ */
+.reading-highlight {
+  background: #fff3c4 !important;
+  box-shadow: 0 0 0 3px var(--orange);
+  border-radius: 8px;
+  scroll-margin-top: 10rem;
+  transition: background .2s;
+}
+
+/* ============ 底部朗读状态条 ============ */
+#speechStatus {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .63rem;
+  padding: .74rem 1rem calc(.74rem + env(safe-area-inset-bottom, 0px));
+  font-size: var(--fs-md);
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, .22);
+  visibility: hidden;
+  transform: translateY(100%);
+  transition: transform .28s ease, visibility .28s;
+}
+#speechStatus.show { visibility: visible; transform: translateY(0); }
+
+#speechStatus .dot {
+  flex: none;
+  width: .63rem;
+  height: .63rem;
+  border-radius: 50%;
+  background: #7cfc9a;
+  animation: pulse 1.1s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+
+#speechStatus .bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, .18);
+}
+#speechStatus .bar > i {
+  display: block;
+  height: 100%;
+  background: var(--orange-2);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform .3s linear;
+}
+
+/* ============ 轻提示 ============ */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 6rem;
+  z-index: 400;
+  max-width: min(90vw, 30rem);
+  padding: 1rem 1.4rem;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  background: rgba(26, 54, 93, .97);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateX(-50%) translateY(1rem);
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+#toast[hidden] { display: none; }
+
+/* ============ 返回顶部 ============ */
+#backTop {
+  position: fixed;
+  right: 1.8rem;
+  bottom: 1.8rem;
+  z-index: 200;
+  min-width: 3.16rem;
+  min-height: 3.16rem;
+  padding: 0;
+  font-size: 1.37rem;
+  border-radius: 50%;
+  transition: bottom .28s ease;
+}
+#backTop[hidden] { display: none; }
+body.speaking #backTop { bottom: 5.6rem; }
+
+/* ============ 页脚 ============ */
+footer {
+  margin-top: 1.58rem;
+  padding: 1.79rem 1rem;
+  font-size: var(--fs-base);
+  line-height: 2;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+}
+footer .small { font-size: var(--fs-xs); opacity: .82; }
+
+/* ============ 高对比模式 ============ */
+body.hc { background: #fff; }
+body.hc .card,
+body.hc .detail-block { border: 2px solid var(--blue-deep); box-shadow: none; }
+body.hc .video-wrap video { border: 2px solid var(--blue-deep); }
+body.hc .tip-bar { border: 2px solid var(--green); }
+body.hc .contact-block { background: #fff3e2; border: 3px solid #b45309; }
+body.hc p,
+body.hc .card p,
+body.hc .detail-block p { color: #101418; }
+body.hc .contact-name { color: #5b3700; }
+body.hc .welcome-card { background: #f2f7ff; border-color: var(--blue-deep); }
+
+/* ============ 动效偏好 ============ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ============ 小屏 ============ */
+@media (max-width: 620px) {
+  header { padding: 1.6rem .95rem; }
+  header h1 { font-size: 1.47rem; }
+  header p { font-size: var(--fs-md); }
+
+  button { min-width: 5.47rem; min-height: 2.63rem; font-size: var(--fs-md); padding: .53rem .74rem; }
+
+  .action-bar { flex-direction: column; align-items: stretch; }
+  .tool-group { justify-content: center; }
+  .tool-group + .tool-group { padding-left: 0; margin-left: 0; border-left: none; }
+  .tool-group.read-group { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .tool-group.read-group button { width: 100%; }
+  .tool-group.font-group { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .tool-group.font-group .group-label { grid-column: 1 / -1; }
+  .tool-group.font-group .btn-sm { width: 100%; min-width: 0; }
+  .tool-group.hc-group { display: flex; }
+  .tool-group.hc-group .btn-sm { flex: 1; }
+
+  .card, .detail-block, .contact-block, .welcome-card { padding: 1.26rem; }
+  .contact-item { flex-direction: column; align-items: flex-start; }
+  .tel-link { width: 100%; justify-content: center; font-size: var(--fs-xl); }
+  .section-title { font-size: 1.32rem; }
+  #backTop { right: 1.05rem; bottom: 1.05rem; }
+  #toast { bottom: 5.5rem; }
+}
+
+/* ============ 打印 ============ */
+@media print {
+  .action-bar, #backTop, #speechStatus, #toast, .skip-link { display: none !important; }
+  body { background: #fff; }
+  .page { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header>
+  <div class="header-inner">
+    <span class="badge">社区信息服务站</span>
+    <h1>上海市XX社区老年信息服务站</h1>
+    <p>贴心服务每一位社区长辈</p>
+  </div>
+</header>
+
+<!-- ===== 无障碍工具栏 ===== -->
+<nav class="action-bar" aria-label="辅助功能工具栏">
+  <div class="tool-group read-group">
+    <button type="button" class="btn-blue" id="readBtn" aria-label="朗读本页内容">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      朗读本页
+    </button>
+    <button type="button" class="btn-green" id="pauseBtn" aria-label="暂停或继续朗读" disabled>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      暂停/继续
+    </button>
+    <button type="button" class="btn-red" id="stopBtn" aria-label="停止朗读" disabled>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+      停止朗读
+    </button>
+  </div>
+
+  <div class="tool-group font-group" role="group" aria-label="字体大小">
+    <span class="group-label">字体</span>
+    <button type="button" class="btn-gray btn-sm font-btn" data-font="f0" aria-pressed="true">标准</button>
+    <button type="button" class="btn-gray btn-sm font-btn" data-font="f1" aria-pressed="false">大</button>
+    <button type="button" class="btn-gray btn-sm font-btn" data-font="f2" aria-pressed="false">特大</button>
+    <button type="button" class="btn-gray btn-sm font-btn" data-font="f3" aria-pressed="false">超大</button>
+  </div>
+
+  <div class="tool-group hc-group" role="group" aria-label="显示模式">
+    <span class="group-label">模式</span>
+    <button type="button" class="btn-gray btn-sm" id="hcBtn" aria-pressed="false">高对比</button>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ========== 首页 ========== -->
+  <section class="page active" id="homePage" aria-label="首页">
+    <div class="container">
+      <p class="tip-bar" role="note">
+        温馨提示：本页面所有电话均可点击直接拨打；点击「朗读本页」即可听到页面内容；工具栏可调整字体大小与显示模式，适合视力不佳的长辈使用。
+      </p>
+
+      <section class="welcome-card">
+        <h2>欢迎来到社区老年信息服务站</h2>
+        <p>本服务站面向社区全体老年居民，提供社区公告通知、老年活动报名、便民生活服务、健康科普知识查询与紧急联系服务。页面字体大、操作简单，支持语音朗读，您可以放心使用，有任何问题可以直接点击页面上的电话一键联系社区工作人员。</p>
+      </section>
+
+      <section class="qr-card" aria-label="手机扫码访问">
+        <div class="qr-text">
+          <h3>手机扫码访问本页面</h3>
+          <p>用手机浏览器或微信扫一扫下方二维码，即可在手机上打开本服务站，方便家属和长辈随时查看公告、活动与健康视频。</p>
+        </div>
+        <div class="qr-img">
+          <img src="qrcode.png" alt="扫码打开社区老年信息服务站网页" width="180" height="180">
+        </div>
+      </section>
+
+      <h2 class="section-title">信息服务栏目</h2>
+      <div class="grid-wrap">
+        <section class="card" aria-labelledby="cardNotice">
+          <h3 id="cardNotice">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h10v2H7zm0-3h10v2H7z"/></svg>
+            社区公告
+          </h3>
+          <p>查看社区最新通知、活动预告与办事指南</p>
+          <button type="button" class="btn-blue" data-goto="noticePage">进入查看</button>
+        </section>
+
+        <section class="card" aria-labelledby="cardActivity">
+          <h3 id="cardActivity">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            老年活动
+          </h3>
+          <p>文体活动、健康讲座、兴趣班报名入口</p>
+          <button type="button" class="btn-blue" data-goto="activityPage">进入查看</button>
+        </section>
+
+        <section class="card" aria-labelledby="cardService">
+          <h3 id="cardService">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97L7.5 22h9l-.25-9.03C18.34 12.84 20 11.12 20 9V2h-2v7h-2V2h-2v7z"/></svg>
+            便民服务
+          </h3>
+          <p>助餐、助浴、上门理发等养老服务介绍</p>
+          <button type="button" class="btn-blue" data-goto="servicePage">进入查看</button>
+        </section>
+
+        <section class="card" aria-labelledby="cardHealth">
+          <h3 id="cardHealth">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            健康园地
+          </h3>
+          <p>老年健康科普、养生知识、就医指引</p>
+          <button type="button" class="btn-blue" data-goto="healthPage">进入查看</button>
+        </section>
+      </div>
+
+      <section class="contact-block" aria-label="紧急联系电话">
+        <h2 class="section-title">紧急联系电话（点击直接拨打）</h2>
+
+        <div class="contact-item">
+          <span class="contact-name">社区居委会<small>社区事务咨询、活动报名</small></span>
+          <a href="tel:021XXXXXXX" class="tel-link">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.25 1.01l-2.2 2.22z"/></svg>
+            021-XXXXXXX
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-name">凤溪社区卫生服务站<small>健康咨询、就医指引 · 凤星路1520号</small></span>
+          <a href="tel:02159770038" class="tel-link">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.25 1.01l-2.2 2.22z"/></svg>
+            021-59770038
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-name">小区物业值班<small>报修、门禁等日常事务</small></span>
+          <a href="tel:021XXXXXXX" class="tel-link">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.25 1.01l-2.2 2.22z"/></svg>
+            021-XXXXXXX
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-name">公安报警<small>治安事件、紧急求助</small></span>
+          <a href="tel:110" class="tel-link">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.25 1.01l-2.2 2.22z"/></svg>
+            110
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-name">紧急救助<small>突发疾病、意外求助</small></span>
+          <a href="tel:120" class="tel-link">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.25 1.01l-2.2 2.22z"/></svg>
+            120
+          </a>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- ========== 社区公告 ========== -->
+  <section class="page" id="noticePage" aria-label="社区公告">
+    <div class="container">
+      <button type="button" class="btn-gray back-btn" data-goto="homePage">← 返回首页</button>
+      <div class="page-head">
+        <span class="icon-badge" style="background:linear-gradient(135deg,#2c5aa0,#4a7bc6);">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h10v2H7zm0-3h10v2H7z"/></svg>
+        </span>
+        <h2 class="section-title">社区公告</h2>
+      </div>
+
+      <article class="detail-block">
+        <h4>老年健康知识讲座通知</h4>
+        <p class="info-line">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13.6V7h2v5.4l4.2 2.4-1 1.4z"/></svg>
+          <span><strong>活动时间：</strong>XX月XX日 XX:XX</span>
+        </p>
+        <p class="info-line">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+          <span><strong>活动地点：</strong>社区活动中心一楼多功能厅</span>
+        </p>
+        <p><strong>活动内容：</strong>邀请社区卫生服务站医生讲解秋冬季节老年常见慢性病预防与日常护理知识，现场可免费测量血压、血糖。</p>
+        <p><strong>报名方式：</strong>直接拨打居委会电话报名，名额不限。</p>
+      </article>
+
+      <article class="detail-block">
+        <h4>社区食堂助餐服务时间更新</h4>
+        <p><strong>调整时间：</strong>自XX月XX日起执行</p>
+        <p><strong>午餐时间：</strong>XX:XX - XX:XX</p>
+        <p><strong>晚餐时间：</strong>XX:XX - XX:XX</p>
+        <p><strong>备注：</strong>70周岁以上老人可享受助餐补贴，符合条件的老人可到居委会办理助餐卡。</p>
+      </article>
+
+      <article class="detail-block">
+        <h4>小区门禁系统升级维护公告</h4>
+        <p><strong>维护时间：</strong>XX月XX日 XX:XX - XX:XX</p>
+        <p><strong>维护说明：</strong>维护期间小区北门临时关闭，请居民从南门进出，给您带来不便敬请谅解。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== 老年活动 ========== -->
+  <section class="page" id="activityPage" aria-label="老年活动">
+    <div class="container">
+      <button type="button" class="btn-gray back-btn" data-goto="homePage">← 返回首页</button>
+      <div class="page-head">
+        <span class="icon-badge" style="background:linear-gradient(135deg,#e07820,#f5a35e);">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </span>
+        <h2 class="section-title">老年活动</h2>
+      </div>
+
+      <article class="detail-block">
+        <h4>老年书法兴趣班</h4>
+        <p><strong>活动时间：</strong>每周XX XX:XX - XX:XX</p>
+        <p><strong>活动地点：</strong>社区文化活动室203室</p>
+        <p><strong>活动内容：</strong>免费提供笔墨纸砚，由社区书法爱好者指导楷书、行书基础练习，欢迎零基础老人参加。</p>
+        <div class="btn-row">
+          <button type="button" class="btn-orange" data-tip="请拨打居委会电话 021-XXXXXXX 报名">立即报名</button>
+        </div>
+      </article>
+
+      <article class="detail-block">
+        <h4>广场舞集体排练</h4>
+        <p><strong>活动时间：</strong>每周XX XX:XX - XX:XX</p>
+        <p><strong>活动地点：</strong>社区中心小广场</p>
+        <p><strong>活动内容：</strong>开展适合老年人的健身操、广场舞排练，活动量适中，免费参与。</p>
+      </article>
+
+      <article class="detail-block">
+        <h4>老年智能手机使用培训</h4>
+        <p><strong>活动时间：</strong>每月第一周 XX:XX - XX:XX</p>
+        <p><strong>活动地点：</strong>社区居委会二楼会议室</p>
+        <p><strong>活动内容：</strong>教老人使用微信视频通话、手机扫码、网上挂号、打车等实用操作，一对一教学。</p>
+        <div class="btn-row">
+          <button type="button" class="btn-orange" data-tip="请拨打居委会电话 021-XXXXXXX 报名">立即报名</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== 便民服务 ========== -->
+  <section class="page" id="servicePage" aria-label="便民服务">
+    <div class="container">
+      <button type="button" class="btn-gray back-btn" data-goto="homePage">← 返回首页</button>
+      <div class="page-head">
+        <span class="icon-badge" style="background:linear-gradient(135deg,#2f855a,#48b57e);">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97L7.5 22h9l-.25-9.03C18.34 12.84 20 11.12 20 9V2h-2v7h-2V2h-2v7z"/></svg>
+        </span>
+        <h2 class="section-title">便民服务</h2>
+      </div>
+
+      <article class="detail-block">
+        <h4>老年助餐服务</h4>
+        <p><strong>服务对象：</strong>本社区60周岁以上老人</p>
+        <p><strong>服务内容：</strong>提供营养均衡的午餐、晚餐，可堂食也可预约送餐上门</p>
+        <p><strong>预订方式：</strong>提前一天拨打社区食堂电话预订</p>
+        <div class="btn-row">
+          <button type="button" class="btn-blue" data-tip="请拨打社区食堂电话 021-XXXXXXX 预订助餐">预订助餐</button>
+        </div>
+      </article>
+
+      <article class="detail-block">
+        <h4>上门理发服务</h4>
+        <p><strong>服务对象：</strong>行动不便的独居、高龄老人</p>
+        <p><strong>服务时间：</strong>每月XX日、XX日 上门服务</p>
+        <p><strong>预约方式：</strong>提前1天拨打居委会电话登记，工作人员统一安排理发师上门。</p>
+        <div class="btn-row">
+          <button type="button" class="btn-blue" data-tip="请拨打居委会电话 021-XXXXXXX 预约上门理发">预约服务</button>
+        </div>
+      </article>
+
+      <article class="detail-block">
+        <h4>居家养老上门陪护</h4>
+        <p><strong>服务内容：</strong>助浴、助洁、助医、代办采购等居家养老服务</p>
+        <p><strong>咨询方式：</strong>到社区居委会养老服务窗口咨询详情，工作人员会根据老人实际情况匹配服务。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== 健康园地 ========== -->
+  <section class="page" id="healthPage" aria-label="健康园地">
+    <div class="container">
+      <button type="button" class="btn-gray back-btn" data-goto="homePage">← 返回首页</button>
+      <div class="page-head">
+        <span class="icon-badge" style="background:linear-gradient(135deg,#b83280,#e86aa9);">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </span>
+        <h2 class="section-title">健康园地</h2>
+      </div>
+
+      <article class="detail-block" style="background:#f6f9ff; border-left-color:#2c5aa0;">
+        <h4 style="margin-bottom:1.05rem;">老年健康科普视频（国家卫健委官方发布，离线可播放）</h4>
+
+        <div class="video-wrap">
+          <h5>就诊带上用药单 内服外用说周全</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video1.mp4" type="video/mp4">
+          </video>
+          <p class="video-fallback">视频文件 video1.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+
+        <div class="video-wrap">
+          <h5>用法用量遵医嘱 多重用药要评估</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video2.mp4" type="video/mp4">
+          </video>
+          <p class="video-fallback">视频文件 video2.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+
+        <div class="video-wrap">
+          <h5>慢病用药莫擅停 规范治疗最可行</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video3.mp4" type="video/mp4">
+          </video>
+          <p class="video-fallback">视频文件 video3.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+
+        <div class="video-wrap">
+          <h5>服药期间应注意 酒类茶饮有禁忌</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video4.mp4" type="video/mp4">
+          </video>
+          <p class="video-fallback">视频文件 video4.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+
+        <div class="video-wrap">
+          <h5>不良反应需警惕 不适症状早咨询</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video5.mp4" type="video/mp4">
+          </video>
+          <p class="video-fallback">视频文件 video5.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+
+        <div class="video-wrap">
+          <h5>药品存放有讲究 过期变质及时清</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video6.mp4" type="video/mp4">
+          </video>
+          <p class="video-fallback">视频文件 video6.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+      </article>
+
+      <article class="detail-block">
+        <h4>秋冬季老年健康防护提示</h4>
+        <p>1. 注意保暖，外出及时增添衣物，避免受凉感冒</p>
+        <p>2. 室内定时通风，保持空气流通，预防呼吸道疾病</p>
+        <p>3. 合理饮食，多吃蔬菜水果，少油腻少辛辣</p>
+        <p>4. 适度运动，可选择散步、打太极等温和运动方式</p>
+      </article>
+
+      <article class="detail-block">
+        <h4>高血压日常注意事项</h4>
+        <p>1. 遵医嘱按时服药，不可自行停药或减药</p>
+        <p>2. 定期监测血压，记录血压变化</p>
+        <p>3. 饮食少盐少油，每天食盐摄入量不超过5克</p>
+        <p>4. 避免情绪激动，保持规律作息</p>
+      </article>
+
+      <article class="detail-block">
+        <h4>居家跌倒应急处理</h4>
+        <p>1. 跌倒后不要急于起身，先缓慢活动四肢确认是否受伤</p>
+        <p>2. 如疼痛剧烈、无法移动，及时拨打120求助</p>
+        <p>3. 跌倒后24小时内密切观察身体状况，有不适及时就医</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<button type="button" id="backTop" class="btn-orange" aria-label="返回页面顶部" hidden>↑</button>
+
+<!-- 底部朗读状态条 -->
+<div id="speechStatus" role="status" aria-live="polite">
+  <span class="dot" aria-hidden="true"></span>
+  <span id="speechStatusText">正在朗读</span>
+  <span class="bar" aria-hidden="true"><i id="speechBar"></i></span>
+</div>
+
+<!-- 轻提示 -->
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
+<footer>
+  上海市XX社区老年信息服务站 · 为社区长辈提供贴心便民服务<br>
+  <span class="small">页面支持语音朗读与字体放大，建议使用手机或电脑浏览器打开</span>
+</footer>
+
+<noscript>
+  <p style="padding:1rem;text-align:center;background:#fff3e2;color:#8a4b0f;">
+    当前浏览器未启用 JavaScript，语音朗读与字体切换功能不可用，其他内容可正常查看。
+  </p>
+</noscript>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+     0. 小工具
+     ============================================================ */
+  var $  = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) {
+    return Array.prototype.slice.call((root || document).querySelectorAll(sel));
+  };
+
+  var STORE = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 隐私模式忽略 */ } }
+  };
+
+  /* ============================================================
+     1. 轻提示（替代 alert，不打断朗读）
+     ============================================================ */
+  var toastEl = $('#toast');
+  var toastTimer = null;
+
+  function showToast(msg) {
+    clearTimeout(toastTimer);
+    toastEl.textContent = msg;
+    toastEl.hidden = false;
+    requestAnimationFrame(function () { toastEl.classList.add('show'); });
+    toastTimer = setTimeout(function () {
+      toastEl.classList.remove('show');
+      setTimeout(function () { toastEl.hidden = true; }, 300);
+    }, 4200);
+  }
+
+  /* ============================================================
+     2. 页面切换（事件委托 + 焦点管理）
+     ============================================================ */
+  var pageList = $$('.page');
+
+  function showPage(id) {
+    var target = document.getElementById(id);
+    if (!target || target.classList.contains('active')) return;
+
+    stopSpeech();
+    pageList.forEach(function (p) { p.classList.toggle('active', p === target); });
+    window.scrollTo({ top: 0, behavior: 'auto' });
+
+    // 把焦点交给新页面，屏幕阅读器与键盘用户可立即感知
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  }
+  window.showPage = showPage;   // 兼容可能存在的 inline 调用
+
+  document.addEventListener('click', function (e) {
+    var nav = e.target.closest('[data-goto]');
+    if (nav) { showPage(nav.getAttribute('data-goto')); return; }
+
+    var tip = e.target.closest('[data-tip]');
+    if (tip) { showToast(tip.getAttribute('data-tip')); }
+  });
+
+  /* ============================================================
+     3. 语音朗读引擎
+     ------------------------------------------------------------
+     关键设计：
+       · 按语义块提取文字，长句再按标点切分（每块 < 55 字），
+         避免 Chrome 单次朗读超时被截断；
+       · 朗读过程中同步高亮当前段落并自动滚动到可见区域；
+       · 暂停采用「取消 + 记忆位置」策略，规避移动端
+         speechSynthesis.pause() 失效的问题。
+     ============================================================ */
+  var speechSupported =
+    'speechSynthesis' in window && typeof window.SpeechSynthesisUtterance === 'function';
+
+  var synth = speechSupported ? window.speechSynthesis : null;
+
+  var TEXT_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,dd,dt,.contact-name,.tel-link';
+  var SENT_END   = '。！？；!?;';
+  var CLAUSE_END = '，、,.';
+  var CHUNK_MAX  = 55;
+
+  var queue = [];          // [{ el, text }]
+  var cursor = 0;
+  var speaking = false;
+  var paused = false;
+  var runId = 0;           // 用于作废延迟回调
+  var highlightEl = null;
+
+  var statusEl   = $('#speechStatus');
+  var statusText = $('#speechStatusText');
+  var statusBar  = $('#speechBar');
+  var readBtn    = $('#readBtn');
+  var pauseBtn   = $('#pauseBtn');
+  var stopBtn    = $('#stopBtn');
+
+  /* ---------- 文本切分 ---------- */
+  function splitText(text) {
+    var sentences = [];
+    var buf = '';
+    for (var i = 0; i < text.length; i++) {
+      var ch = text.charAt(i);
+      buf += ch;
+      if (SENT_END.indexOf(ch) > -1) { sentences.push(buf); buf = ''; }
+    }
+    if (buf) sentences.push(buf);
+
+    var out = [];
+    sentences.forEach(function (s) {
+      s = s.trim();
+      if (!s) return;
+      if (s.length <= CHUNK_MAX) { out.push(s); return; }
+
+      var b = '';
+      for (var j = 0; j < s.length; j++) {
+        var c = s.charAt(j);
+        b += c;
+        if (b.length >= CHUNK_MAX && CLAUSE_END.indexOf(c) > -1) { out.push(b.trim()); b = ''; }
+        else if (b.length >= CHUNK_MAX * 1.8) { out.push(b.trim()); b = ''; }
+      }
+      if (b.trim()) out.push(b.trim());
+    });
+    return out;
+  }
+
+  /* ---------- 提取当前页面文字 ---------- */
+  function collectBlocks(root) {
+    var blocks = [];
+    $$(TEXT_SELECTOR, root).forEach(function (el) {
+      if (el.closest('.action-bar, #speechStatus, #toast')) return;
+      if (el.closest('.video-fallback')) return;
+      // 跳过被已收集块包含的后代，避免重复朗读
+      for (var i = 0; i < blocks.length; i++) {
+        if (blocks[i].el.contains(el)) return;
+      }
+      var text = (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (text.length < 2) return;
+      blocks.push({ el: el, text: text });
+    });
+    return blocks;
+  }
+
+  /* ---------- 高亮与滚动 ---------- */
+  function setHighlight(el) {
+    if (highlightEl === el) return;
+    if (highlightEl) highlightEl.classList.remove('reading-highlight');
+    highlightEl = el || null;
+    if (!highlightEl) return;
+
+    highlightEl.classList.add('reading-highlight');
+
+    // 仅当元素不在可视区域时才滚动，避免频繁跳动
+    var rect = highlightEl.getBoundingClientRect();
+    var topSafe = 150;
+    var bottomSafe = window.innerHeight - 60;
+    if (rect.top < topSafe || rect.bottom > bottomSafe) {
+      var y = window.scrollY + rect.top - 170;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    }
+  }
+
+  /* ---------- 状态 UI ---------- */
+  function setStatusUI(text) {
+    statusText.textContent = text;
+    statusEl.classList.add('show');
+    document.body.classList.add('speaking');
+    readBtn.disabled = true;
+    pauseBtn.disabled = false;
+    stopBtn.disabled = false;
+  }
+
+  function clearStatusUI() {
+    statusEl.classList.remove('show');
+    document.body.classList.remove('speaking');
+    readBtn.disabled = false;
+    pauseBtn.disabled = true;
+    stopBtn.disabled = true;
+    statusBar.style.transform = 'scaleX(0)';
+  }
+
+  function updateProgress() {
+    var p = queue.length ? cursor / queue.length : 0;
+    statusBar.style.transform = 'scaleX(' + Math.min(1, p) + ')';
+  }
+
+  /* ---------- 朗读主循环 ---------- */
+  function speakCurrent() {
+    if (!speaking || paused) return;
+
+    if (cursor >= queue.length) { finishSpeech(); return; }
+
+    var item = queue[cursor];
+    setHighlight(item.el);
+    updateProgress();
+
+    var u = new SpeechSynthesisUtterance(item.text);
+    u.lang = 'zh-CN';
+    u.rate = 0.85;
+    u.pitch = 1;
+    u.volume = 1;
+
+    u.onend = function () {
+      if (!speaking || paused) return;
+      cursor++;
+      updateProgress();
+      speakCurrent();
+    };
+    u.onerror = function (ev) {
+      if (!speaking || paused) return;
+      var err = ev && ev.error;
+      if (err === 'interrupted' || err === 'canceled') return;
+      cursor++;
+      speakCurrent();
+    };
+
+    synth.speak(u);
+  }
+
+  function finishSpeech() {
+    speaking = false;
+    paused = false;
+    queue = [];
+    cursor = 0;
+    setHighlight(null);
+    clearStatusUI();
+  }
+
+  /* ---------- 对外动作 ---------- */
+  function startSpeech() {
+    if (!speechSupported) {
+      showToast('当前浏览器不支持语音朗读，建议使用最新版 Chrome、Edge 或微信内置浏览器。');
+      return;
+    }
+
+    var myRun = ++runId;
+
+    synth.cancel();
+    speaking = false;
+    paused = false;
+    queue = [];
+    cursor = 0;
+    setHighlight(null);
+
+    var page = document.querySelector('.page.active');
+    if (!page) return;
+
+    var blocks = collectBlocks(page);
+    if (!blocks.length) { showToast('本页暂无可朗读的内容。'); return; }
+
+    blocks.forEach(function (b) {
+      splitText(b.text).forEach(function (t) { queue.push({ el: b.el, text: t }); });
+    });
+
+    speaking = true;
+    paused = false;
+    cursor = 0;
+    setStatusUI('正在朗读');
+    updateProgress();
+
+    // 给 cancel 一点缓冲，规避 Chrome 的 cancel+speak 竞态
+    setTimeout(function () {
+      if (myRun !== runId || !speaking) return;
+      speakCurrent();
+    }, 80);
+  }
+
+  function pauseSpeech() {
+    if (!speaking || paused) return;
+    paused = true;
+
+    // 优先用原生暂停
+    try { synth.pause(); } catch (e) { /* 忽略 */ }
+
+    setStatusUI('已暂停 · 点击「暂停/继续」恢复');
+
+    // 300ms 后检查原生暂停是否生效，不生效则降级为取消（保留 cursor）
+    setTimeout(function () {
+      if (!paused || !speaking) return;
+      if (synth.speaking && !synth.paused) {
+        synth.cancel();   // 取消当前段，cursor 不变，恢复时重读该段
+      }
+    }, 300);
+  }
+
+  function resumeSpeech() {
+    if (!speaking || !paused) return;
+    paused = false;
+
+    if (synth.paused) {
+      synth.resume();
+      setStatusUI('正在朗读');
+    } else {
+      setStatusUI('正在朗读');
+      speakCurrent();     // 降级路径：重读当前段
+    }
+  }
+
+  function stopSpeech() {
+    runId++;
+    speaking = false;
+    paused = false;
+    queue = [];
+    cursor = 0;
+    if (synth) synth.cancel();
+    setHighlight(null);
+    clearStatusUI();
+  }
+
+  /* ---------- 事件绑定 ---------- */
+  readBtn.addEventListener('click', startSpeech);
+  pauseBtn.addEventListener('click', function () {
+    if (!speaking) { startSpeech(); return; }
+    if (paused) { resumeSpeech(); } else { pauseSpeech(); }
+  });
+  stopBtn.addEventListener('click', stopSpeech);
+
+  window.addEventListener('pagehide', stopSpeech);
+
+  /* ============================================================
+     4. 字体档位
+     ============================================================ */
+  var FONT_KEY = 'elder-font';
+  var fontBtns = $$('.font-btn');
+
+  function applyFont(level) {
+    var valid = ['f0', 'f1', 'f2', 'f3'];
+    if (valid.indexOf(level) === -1) level = 'f0';
+
+    document.documentElement.setAttribute('data-font', level);
+    fontBtns.forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-font') === level));
+    });
+    STORE.set(FONT_KEY, level);
+  }
+
+  fontBtns.forEach(function (b) {
+    b.addEventListener('click', function () { applyFont(b.getAttribute('data-font')); });
+  });
+
+  applyFont(STORE.get(FONT_KEY) || 'f0');
+
+  /* ============================================================
+     5. 高对比模式
+     ============================================================ */
+  var HC_KEY = 'elder-hc';
+  var hcBtn = $('#hcBtn');
+
+  function applyHC(on) {
+    document.body.classList.toggle('hc', on);
+    hcBtn.setAttribute('aria-pressed', String(on));
+    hcBtn.textContent = on ? '标准模式' : '高对比';
+    hcBtn.classList.toggle('btn-gray', !on);
+    hcBtn.classList.toggle('btn-blue', on);
+    STORE.set(HC_KEY, on ? '1' : '0');
+  }
+
+  hcBtn.addEventListener('click', function () {
+    applyHC(!document.body.classList.contains('hc'));
+  });
+
+  applyHC(STORE.get(HC_KEY) === '1');
+
+  /* ============================================================
+     6. 返回顶部
+     ============================================================ */
+  var backTop = $('#backTop');
+  var scrollTicking = false;
+
+  window.addEventListener('scroll', function () {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(function () {
+      backTop.hidden = window.scrollY < 300;
+      scrollTicking = false;
+    });
+  }, { passive: true });
+
+  backTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ============================================================
+     7. 视频缺失提示
+     ============================================================ */
+  $$('.video-wrap').forEach(function (wrap) {
+    var video = $('video', wrap);
+    var fallback = $('.video-fallback', wrap);
+    if (!video || !fallback) return;
+
+    var show = function () { fallback.classList.add('show'); };
+    var hide = function () { fallback.classList.remove('show'); };
+
+    video.addEventListener('loadeddata', hide);
+    video.addEventListener('error', show);
+    $$('source', video).forEach(function (s) { s.addEventListener('error', show); });
+
+    // 初始检查：NETWORK_NO_SOURCE 表示所有源都不可用
+    if (video.networkState === 3) show();
+  });
+
+})();
+</script>
+</body>
+</html>
