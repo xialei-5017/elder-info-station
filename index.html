@@ -165,6 +165,7 @@ header p { font-size: var(--fs-lg); opacity: .96; }
   border-left: 2px solid #eef3fa;
 }
 .group-label { font-size: var(--fs-xs); color: #75809a; }
+.bar-row { display: contents; }
 
 button {
   display: inline-flex;
@@ -549,18 +550,21 @@ body.hc .action-bar { background: #fff; border-bottom: 2px solid var(--blue-deep
   header h1 { font-size: 1.47rem; }
   header p { font-size: var(--fs-md); }
 
-  button { min-width: 5.47rem; min-height: 2.63rem; font-size: var(--fs-md); padding: .53rem .74rem; }
-
-  .action-bar { flex-direction: column; align-items: stretch; gap: .45rem; padding: .5rem .7rem; }
-  .tool-group { justify-content: center; flex-wrap: wrap; gap: .45rem; }
+  /* 工具条：紧凑两行小按钮，少占屏幕 */
+  .action-bar { flex-direction: column; align-items: stretch; gap: .42rem; padding: .45rem .6rem; }
+  .bar-row { display: flex; width: 100%; gap: .42rem; }
+  .bar-row button { flex: 1 1 0; min-width: 0; }
+  .tool-group { display: contents; }
   .tool-group + .tool-group { padding-left: 0; margin-left: 0; border-left: none; }
-  .tool-group.read-group { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .tool-group.read-group button { width: 100%; min-width: 0; }
-  .tool-group.font-group { display: flex; flex-wrap: wrap; }
-  .tool-group.font-group .group-label { align-self: center; }
-  .tool-group.font-group .btn-sm { flex: 1 1 auto; width: auto; min-width: 0; }
-  .tool-group.hc-group { display: flex; }
-  .tool-group.hc-group .btn-sm { flex: 1; }
+  .group-label { display: none; }
+  .action-bar .icon { display: none; }
+  .action-bar button {
+    min-height: 2.35rem;
+    padding: .4rem .25rem;
+    font-size: var(--fs-sm);
+    border-radius: var(--r-md);
+    box-shadow: 0 2px 5px rgba(27, 54, 93, .12);
+  }
 
   .card, .detail-block, .contact-block, .welcome-card { padding: 1.26rem; }
   .contact-item { flex-direction: column; align-items: flex-start; }
@@ -592,32 +596,33 @@ body.hc .action-bar { background: #fff; border-bottom: 2px solid var(--blue-deep
 
 <!-- ===== 无障碍工具栏 ===== -->
 <nav class="action-bar" aria-label="辅助功能工具栏">
-  <div class="tool-group read-group">
+  <div class="bar-row read-row">
     <button type="button" class="btn-blue" id="readBtn" aria-label="朗读本页内容">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-      朗读本页
+      朗读
     </button>
     <button type="button" class="btn-green" id="pauseBtn" aria-label="暂停或继续朗读" disabled>
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-      暂停/继续
+      暂停
     </button>
     <button type="button" class="btn-red" id="stopBtn" aria-label="停止朗读" disabled>
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
-      停止朗读
+      停止
     </button>
   </div>
 
-  <div class="tool-group font-group" role="group" aria-label="字体大小">
-    <span class="group-label">字体</span>
-    <button type="button" class="btn-gray btn-sm font-btn" data-font="f0" aria-pressed="true">标准</button>
-    <button type="button" class="btn-gray btn-sm font-btn" data-font="f1" aria-pressed="false">大</button>
-    <button type="button" class="btn-gray btn-sm font-btn" data-font="f2" aria-pressed="false">特大</button>
-    <button type="button" class="btn-gray btn-sm font-btn" data-font="f3" aria-pressed="false">超大</button>
-  </div>
-
-  <div class="tool-group hc-group" role="group" aria-label="显示模式">
-    <span class="group-label">模式</span>
-    <button type="button" class="btn-gray btn-sm" id="hcBtn" aria-pressed="false">高对比</button>
+  <div class="bar-row aux-row">
+    <div class="tool-group font-group" role="group" aria-label="字体大小">
+      <span class="group-label">字体</span>
+      <button type="button" class="btn-gray btn-sm font-btn" data-font="f0" aria-pressed="true">标准</button>
+      <button type="button" class="btn-gray btn-sm font-btn" data-font="f1" aria-pressed="false">大</button>
+      <button type="button" class="btn-gray btn-sm font-btn" data-font="f2" aria-pressed="false">特大</button>
+      <button type="button" class="btn-gray btn-sm font-btn" data-font="f3" aria-pressed="false">超大</button>
+    </div>
+    <div class="tool-group hc-group" role="group" aria-label="显示模式">
+      <span class="group-label">模式</span>
+      <button type="button" class="btn-gray btn-sm" id="hcBtn" aria-pressed="false">对比</button>
+    </div>
   </div>
 </nav>
 
@@ -1325,7 +1330,7 @@ body.hc .action-bar { background: #fff; border-bottom: 2px solid var(--blue-deep
   function applyHC(on) {
     document.body.classList.toggle('hc', on);
     hcBtn.setAttribute('aria-pressed', String(on));
-    hcBtn.textContent = on ? '标准模式' : '高对比';
+    hcBtn.textContent = on ? '标准' : '对比';
     hcBtn.classList.toggle('btn-gray', !on);
     hcBtn.classList.toggle('btn-blue', on);
     STORE.set(HC_KEY, on ? '1' : '0');
