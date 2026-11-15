@@ -138,19 +138,20 @@ header p { font-size: var(--fs-lg); opacity: .96; }
 
 /* ============ 无障碍工具栏 ============ */
 .action-bar {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 500;
   display: flex;
   flex-wrap: wrap;
   gap: .63rem;
   align-items: center;
   justify-content: center;
-  padding: .74rem .84rem;
-  background: rgba(255, 255, 255, .97);
+  padding: .6rem .84rem;
+  background: #ffffff;
   border-bottom: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-md);
 }
 .tool-group {
   display: flex;
@@ -414,7 +415,7 @@ button[disabled] { opacity: .45; cursor: not-allowed; box-shadow: none; }
   background: #fff3c4 !important;
   box-shadow: 0 0 0 3px var(--orange);
   border-radius: 8px;
-  scroll-margin-top: 10rem;
+  scroll-margin-top: 12rem;
   transition: background .2s;
 }
 
@@ -530,6 +531,7 @@ body.hc .card p,
 body.hc .detail-block p { color: #101418; }
 body.hc .contact-name { color: #5b3700; }
 body.hc .welcome-card { background: #f2f7ff; border-color: var(--blue-deep); }
+body.hc .action-bar { background: #fff; border-bottom: 2px solid var(--blue-deep); }
 
 /* ============ 动效偏好 ============ */
 @media (prefers-reduced-motion: reduce) {
@@ -549,14 +551,14 @@ body.hc .welcome-card { background: #f2f7ff; border-color: var(--blue-deep); }
 
   button { min-width: 5.47rem; min-height: 2.63rem; font-size: var(--fs-md); padding: .53rem .74rem; }
 
-  .action-bar { flex-direction: column; align-items: stretch; }
-  .tool-group { justify-content: center; }
+  .action-bar { flex-direction: column; align-items: stretch; gap: .45rem; padding: .5rem .7rem; }
+  .tool-group { justify-content: center; flex-wrap: wrap; gap: .45rem; }
   .tool-group + .tool-group { padding-left: 0; margin-left: 0; border-left: none; }
-  .tool-group.read-group { display: grid; grid-template-columns: repeat(2, 1fr); }
-  .tool-group.read-group button { width: 100%; }
-  .tool-group.font-group { display: grid; grid-template-columns: repeat(2, 1fr); }
-  .tool-group.font-group .group-label { grid-column: 1 / -1; }
-  .tool-group.font-group .btn-sm { width: 100%; min-width: 0; }
+  .tool-group.read-group { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .tool-group.read-group button { width: 100%; min-width: 0; }
+  .tool-group.font-group { display: flex; flex-wrap: wrap; }
+  .tool-group.font-group .group-label { align-self: center; }
+  .tool-group.font-group .btn-sm { flex: 1 1 auto; width: auto; min-width: 0; }
   .tool-group.hc-group { display: flex; }
   .tool-group.hc-group .btn-sm { flex: 1; }
 
@@ -1279,6 +1281,18 @@ body.hc .welcome-card { background: #f2f7ff; border-color: var(--blue-deep); }
   window.addEventListener('pagehide', stopSpeech);
 
   /* ============================================================
+     3.5 固定顶栏占位：测量工具条高度，避免遮住首屏内容
+     ============================================================ */
+  var actionBar = $('.action-bar');
+  function fitActionBar() {
+    if (!actionBar) return;
+    requestAnimationFrame(function () {
+      document.body.style.paddingTop = actionBar.offsetHeight + 'px';
+    });
+  }
+  window.addEventListener('resize', fitActionBar);
+
+  /* ============================================================
      4. 字体档位
      ============================================================ */
   var FONT_KEY = 'elder-font';
@@ -1293,6 +1307,7 @@ body.hc .welcome-card { background: #f2f7ff; border-color: var(--blue-deep); }
       b.setAttribute('aria-pressed', String(b.getAttribute('data-font') === level));
     });
     STORE.set(FONT_KEY, level);
+    fitActionBar();
   }
 
   fontBtns.forEach(function (b) {
@@ -1314,6 +1329,7 @@ body.hc .welcome-card { background: #f2f7ff; border-color: var(--blue-deep); }
     hcBtn.classList.toggle('btn-gray', !on);
     hcBtn.classList.toggle('btn-blue', on);
     STORE.set(HC_KEY, on ? '1' : '0');
+    fitActionBar();
   }
 
   hcBtn.addEventListener('click', function () {
@@ -1321,6 +1337,7 @@ body.hc .welcome-card { background: #f2f7ff; border-color: var(--blue-deep); }
   });
 
   applyHC(STORE.get(HC_KEY) === '1');
+  fitActionBar();
 
   /* ============================================================
      6. 返回顶部
