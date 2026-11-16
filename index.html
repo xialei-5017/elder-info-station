@@ -410,6 +410,22 @@ button[disabled] { opacity: .45; cursor: not-allowed; box-shadow: none; }
   border-radius: .53rem;
 }
 .video-fallback.show { display: block; }
+.video-source { margin: .42rem 0 0; font-size: var(--fs-xs); color: #7a8494; }
+
+/* ===== 智能问答 ===== */
+.ai-chips { display: flex; flex-wrap: wrap; gap: .53rem; margin: .84rem 0; }
+.ai-input-row { display: flex; gap: .53rem; margin-top: .84rem; }
+.ai-input {
+  flex: 1 1 auto; min-width: 0; padding: .63rem .84rem;
+  font-size: var(--fs-base); border: 1px solid #c9d2d8; border-radius: .63rem;
+  background: #fff; color: #101418;
+}
+.ai-input:focus { outline: 2px solid var(--blue); }
+.ai-dialog { margin-top: 1.05rem; display: flex; flex-direction: column; gap: .63rem; }
+.ai-bubble { max-width: 88%; padding: .63rem .84rem; border-radius: .74rem; font-size: var(--fs-base); line-height: 1.7; }
+.ai-bubble.user { align-self: flex-end; background: var(--blue); color: #fff; }
+.ai-bubble.bot { align-self: flex-start; background: #f1f5f2; color: #101418; }
+.ai-bubble.bot small { display: block; margin-top: .3rem; color: #7a8494; }
 
 /* ============ 朗读高亮 ============ */
 .reading-highlight {
@@ -687,6 +703,15 @@ body.hc .action-bar { background: #fff; border-bottom: 2px solid var(--blue-deep
           <p>老年健康科普、养生知识、就医指引</p>
           <button type="button" class="btn-blue" data-goto="healthPage">进入查看</button>
         </section>
+
+        <section class="card" aria-labelledby="cardAsk">
+          <h3 id="cardAsk">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-9 14H9v-2h2v2zm0-4H9V8h2v4z"/></svg>
+            智能问答
+          </h3>
+          <p>输入或点选常见问题，按关键词给出解答指引</p>
+          <button type="button" class="btn-blue" data-goto="aiPage">进入提问</button>
+        </section>
       </div>
 
       <section class="contact-block" aria-label="紧急联系电话">
@@ -918,6 +943,46 @@ body.hc .action-bar { background: #fff; border-bottom: 2px solid var(--blue-deep
         </div>
       </article>
 
+      <article class="detail-block" style="background:#f6f9f4; border-left-color:#3f7d5c;">
+        <h4 style="margin-bottom:1.05rem;">日常养生调理视频（卫健部门公开科普）</h4>
+
+        <div class="video-wrap">
+          <h5>八段锦：温和健身 调理脾胃</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video7.mp4" type="video/mp4">
+          </video>
+          <p class="video-source">来源：杏坛社区卫生服务中心（佛山市顺德区卫生健康局公开科普）</p>
+          <p class="video-fallback">视频文件 video7.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+
+        <div class="video-wrap">
+          <h5>紫苏黄芪饮：益气固表 预防流感</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video8.mp4" type="video/mp4">
+          </video>
+          <p class="video-source">来源：顺德区伦教医院（佛山市顺德区卫生健康局公开科普）</p>
+          <p class="video-fallback">视频文件 video8.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+
+        <div class="video-wrap">
+          <h5>立夏养生：养心助眠</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video9.mp4" type="video/mp4">
+          </video>
+          <p class="video-source">来源：广东医科大学顺德妇女儿童医院（佛山市顺德区卫生健康局公开科普）</p>
+          <p class="video-fallback">视频文件 video9.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+
+        <div class="video-wrap">
+          <h5>春分养生：顺应时节 春季生发</h5>
+          <video controls preload="metadata" playsinline>
+            <source src="video10.mp4" type="video/mp4">
+          </video>
+          <p class="video-source">来源：大良健共体（佛山市顺德区卫生健康局公开科普）</p>
+          <p class="video-fallback">视频文件 video10.mp4 未找到，请将视频文件与本页面放在同一文件夹。</p>
+        </div>
+      </article>
+
       <article class="detail-block">
         <h4>秋冬季老年健康防护提示</h4>
         <p>1. 注意保暖，外出及时增添衣物，避免受凉感冒</p>
@@ -939,6 +1004,69 @@ body.hc .action-bar { background: #fff; border-bottom: 2px solid var(--blue-deep
         <p>1. 跌倒后不要急于起身，先缓慢活动四肢确认是否受伤</p>
         <p>2. 如疼痛剧烈、无法移动，及时拨打120求助</p>
         <p>3. 跌倒后24小时内密切观察身体状况，有不适及时就医</p>
+      </article>
+
+      <article class="detail-block">
+        <h4>饮食调理</h4>
+        <p>1. 三餐定时定量，细嚼慢咽，不要吃得过饱。</p>
+        <p>2. 少吃生冷、油腻、辛辣和过甜的食物，饭菜以温热、软烂、好消化为宜。</p>
+        <p>3. 粗细粮搭配，蔬菜适量；豆类、粗粮一次不要吃太多，以免胀气。</p>
+        <p>4. 饭后不要立刻躺下，可稍坐或慢走片刻。</p>
+      </article>
+
+      <article class="detail-block">
+        <h4>起居作息</h4>
+        <p>1. 早睡早起，保证规律睡眠，避免熬夜。</p>
+        <p>2. 注意腹部和足部保暖，换季及时增添衣物。</p>
+        <p>3. 避免久坐，每隔一段时间起身活动一下。</p>
+        <p>4. 保持室内通风，天气好时适当到户外走走。</p>
+      </article>
+
+      <article class="detail-block">
+        <h4>运动与情绪</h4>
+        <p>1. 选择散步、打太极、八段锦等温和运动，量力而行，避免剧烈活动。</p>
+        <p>2. 运动前后注意热身和放松，出汗后及时擦干、避免受凉。</p>
+        <p>3. 保持心情舒畅，遇事少着急，情绪平稳也有助于脾胃调理。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== 智能问答（前端关键词识别） ========== -->
+  <section class="page" id="aiPage" aria-label="智能问答">
+    <div class="container">
+      <button type="button" class="btn-gray back-btn" data-goto="homePage">← 返回首页</button>
+      <div class="page-head">
+        <span class="icon-badge" style="background:linear-gradient(135deg,#3f7d5c,#c98a3d);">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-9 14H9v-2h2v2zm0-4H9V8h2v4z"/></svg>
+        </span>
+        <h2 class="section-title">智能问答</h2>
+      </div>
+
+      <article class="detail-block">
+        <p>在下方输入问题，或点选常见问题；本站按关键词给出预设解答。回答仅供日常参考，不能替代医生诊断；身体不适请及时就医，急症请拨 120。</p>
+
+        <div class="ai-chips" id="aiChips">
+          <button type="button" class="btn-gray btn-sm" data-q="身体不舒服怎么办">身体不舒服怎么办</button>
+          <button type="button" class="btn-gray btn-sm" data-q="紧急情况打什么电话">紧急情况打什么电话</button>
+          <button type="button" class="btn-gray btn-sm" data-q="养生饮食要注意什么">养生饮食要注意什么</button>
+          <button type="button" class="btn-gray btn-sm" data-q="晚上睡不着怎么办">晚上睡不着怎么办</button>
+          <button type="button" class="btn-gray btn-sm" data-q="可以做什么运动">可以做什么运动</button>
+          <button type="button" class="btn-gray btn-sm" data-q="用药要注意什么">用药要注意什么</button>
+          <button type="button" class="btn-gray btn-sm" data-q="怎么报名社区活动">怎么报名社区活动</button>
+          <button type="button" class="btn-gray btn-sm" data-q="便民服务有哪些">便民服务有哪些</button>
+          <button type="button" class="btn-gray btn-sm" data-q="血压高头晕怎么办">血压高头晕怎么办</button>
+          <button type="button" class="btn-gray btn-sm" data-q="感冒受凉要注意什么">感冒受凉要注意什么</button>
+          <button type="button" class="btn-gray btn-sm" data-q="怎么看科普视频">怎么看科普视频</button>
+          <button type="button" class="btn-gray btn-sm" data-q="字太小怎么朗读">字太小怎么朗读</button>
+          <button type="button" class="btn-gray btn-sm" data-q="社区公告在哪看">社区公告在哪看</button>
+        </div>
+
+        <div class="ai-input-row">
+          <input type="text" id="aiInput" class="ai-input" placeholder="请输入您的问题" aria-label="问题输入框" autocomplete="off">
+          <button type="button" class="btn-green" id="aiAskBtn">提问</button>
+        </div>
+
+        <div class="ai-dialog" id="aiDialog" aria-live="polite"></div>
       </article>
     </div>
   </section>
@@ -1380,6 +1508,101 @@ body.hc .action-bar { background: #fff; border-bottom: 2px solid var(--blue-deep
 
     // 初始检查：NETWORK_NO_SOURCE 表示所有源都不可用
     if (video.networkState === 3) show();
+  });
+
+  /* ============================================================
+     8. 智能问答（前端关键词识别，不联网、不接大模型）
+     ============================================================ */
+  var aiInput = $('#aiInput');
+  var aiAskBtn = $('#aiAskBtn');
+  var aiDialog = $('#aiDialog');
+  var aiChips = $('#aiChips');
+
+  var AI_RULES = [
+    { keys: ['救命', '胸痛', '胸口痛', '晕倒', '昏迷', '出血', '呼吸困难', '中风', '摔倒', '起不来', '急病', '难受得厉害'],
+      answer: '如情况紧急，请立即拨打 120 医疗急救；让患者平卧、不要随意搬动，在原地等待救援。' },
+    { keys: ['报警', '小偷', '被盗', '盗窃', '纠纷', '治安', '有人闹事'],
+      answer: '遇到治安问题请拨打 110 报警；如有人身危险，先保证自身安全再求助。' },
+    { keys: ['着火', '火灾', '起火', '冒烟', '火苗'],
+      answer: '发生火情请立即拨打 119 火警电话；尽快撤离到安全地点，不要乘坐电梯。' },
+    { keys: ['紧急', '急救电话', '求助电话', '什么电话', '电话号码'],
+      answer: '急症医疗救援拨 120，治安报警拨 110，火警拨 119；健康咨询可联系页面上的社区卫生服务站。' },
+    { keys: ['不舒服', '难受', '不适', '看医生', '身体不舒服'],
+      answer: '建议先到社区卫生服务站或正规医院就诊，由医生判断；如出现胸痛、晕倒、呼吸困难等急症，请立即拨打 120。' },
+    { keys: ['卫生院', '卫生服务站', '健康咨询', '看病', '就医', '挂号', '体检'],
+      answer: '健康咨询或就医指引，可拨打页面上的凤溪社区卫生服务站电话；需要进一步检查请到正规医院就诊。' },
+    { keys: ['养生', '脾胃', '胃', '消化', '饮食', '吃什么', '调理', '拉肚子', '肚子胀'],
+      answer: '日常养生请参考「健康园地」里的养生视频和饮食调理常识：三餐定时、细嚼慢咽，饭菜温热软烂、少油腻辛辣，饭后稍坐或慢走片刻。' },
+    { keys: ['失眠', '睡不着', '睡眠', '入睡', '多梦'],
+      answer: '起居上建议早睡早起、避免熬夜，睡前少看手机；注意腹部和足部保暖。若长期失眠或伴随其他不适，请及时就医。' },
+    { keys: ['运动', '锻炼', '散步', '八段锦', '太极', '健身'],
+      answer: '可选择散步、打太极、八段锦等温和运动，量力而行；运动前后热身放松，出汗后及时擦干、避免受凉。' },
+    { keys: ['吃药', '用药', '药', '降压药', '停药', '减药', '副作用', '不良反应'],
+      answer: '用药请遵医嘱，不可自行停药、减药或换药；具体用药问题请咨询医生或药师，可参考健康园地的用药科普视频。' },
+    { keys: ['活动', '报名', '讲座', '兴趣班', '课程'],
+      answer: '社区文体活动、健康讲座和兴趣班，可到「老年活动」板块查看，或拨打居委会电话报名。' },
+    { keys: ['助餐', '食堂', '吃饭', '理发', '助浴', '上门', '便民'],
+      answer: '助餐、助浴、上门理发等便民服务，可到「便民服务」板块查看，按页面电话预约登记。' },
+    { keys: ['血压', '高血压', '头晕', '头痛', '血压高', '头晕眼花'],
+      answer: '请遵医嘱按时服药，定期测量并记录血压；饮食少盐少油、避免情绪激动。若血压明显升高或伴胸闷、剧烈头晕，请及时就医。' },
+    { keys: ['天气', '降温', '感冒', '受凉', '保暖', '添衣', '换季', '咳嗽', '流鼻涕'],
+      answer: '注意及时增添衣物，做好腹部和足部保暖；室内定时通风、多喝温水。若感冒加重或出现发热，请及时就医。' },
+    { keys: ['便秘', '大便', '喝水', '上火', '干燥'],
+      answer: '可适量饮水，多吃蔬菜水果和粗粮，适度活动；若持续不缓解或伴有腹痛，请及时就医。' },
+    { keys: ['跌倒', '摔了', '扭伤', '崴脚', '磕到'],
+      answer: '跌倒后先不要急着起身，缓慢活动四肢确认是否受伤；如疼痛剧烈、无法移动，请立即拨打 120；24 小时内密切观察身体状况。' },
+    { keys: ['公告', '通知', '消息', '最新', '办事指南', '办事'],
+      answer: '社区最新通知、活动预告和办事指南，可到「社区公告」板块查看。' },
+    { keys: ['视频', '播放', '看视频', '养生视频', '打不开视频'],
+      answer: '养生与用药科普视频都在「健康园地」，点击即可播放；页面需要联网，若加载不出可检查网络后重试。' },
+    { keys: ['字体', '大字', '朗读', '声音', '读出来', '看不清', '对比', '放大'],
+      answer: '页面顶部工具栏可切换字体大小，点「朗读」可听页面内容，也可开启高对比模式方便查看。' },
+    { keys: ['地址', '在哪', '位置', '怎么走', '服务站在哪'],
+      answer: '凤溪社区卫生服务站在凤星路 1520 号；其他办事地点可拨打首页居委会电话询问。' },
+    { keys: ['子女', '家属', '孩子', '家人', '帮忙', '陪我', '不会用'],
+      answer: '可请家属或社区工作人员陪同查看本页；需要联系社区，拨打首页电话即可，急症请拨 120。' },
+    { keys: ['居委会', '社区电话', '联系', '电话', '找谁'],
+      answer: '社区事务咨询与活动报名，可拨打首页「紧急联系电话」区里的居委会电话；健康问题可联系社区卫生服务站。' }
+  ];
+
+  function aiAnswer(q) {
+    var text = (q || '').trim().toLowerCase();
+    if (!text) return '请先输入您的问题，或点选下方常见问题。';
+    for (var i = 0; i < AI_RULES.length; i++) {
+      var rule = AI_RULES[i];
+      for (var j = 0; j < rule.keys.length; j++) {
+        if (text.indexOf(rule.keys[j].toLowerCase()) !== -1) return rule.answer;
+      }
+    }
+    return '这个问题我暂时答不上来。您可以拨打页面上的社区居委会或卫生服务站电话咨询；身体不适请及时就医，急症请拨 120。';
+  }
+
+  function aiAsk(q) {
+    var question = (q || aiInput.value).trim();
+    if (!question) { showToast('请先输入您的问题'); return; }
+
+    var userBubble = document.createElement('div');
+    userBubble.className = 'ai-bubble user';
+    userBubble.textContent = question;
+    aiDialog.appendChild(userBubble);
+
+    var botBubble = document.createElement('div');
+    botBubble.className = 'ai-bubble bot';
+    botBubble.textContent = aiAnswer(question);
+    var small = document.createElement('small');
+    small.textContent = '本站预设解答，仅供参考，不能替代就医诊断。';
+    botBubble.appendChild(small);
+    aiDialog.appendChild(botBubble);
+
+    aiInput.value = '';
+    aiDialog.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  if (aiAskBtn) aiAskBtn.addEventListener('click', function () { aiAsk(); });
+  if (aiInput) aiInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') aiAsk(); });
+  if (aiChips) aiChips.addEventListener('click', function (e) {
+    var chip = e.target.closest('[data-q]');
+    if (chip) aiAsk(chip.getAttribute('data-q'));
   });
 
 })();
